@@ -1,0 +1,9 @@
+WRITEUP
+
+1. For part 1 the input is a path of a directory containing the files to be analyzed and the output is a bunch of tuples containing the word, document name, and the number of times the term occurs in that document
+
+I did not get to parts 2 and 3, but the input would have been the same as parts 1 and 4 which is the path of the directory. The input would have been various bigrams within the document and their occurrence counts for part 2 which would output a tuple containing the bigram and number of occurrences. Part 2 is the first map-reduce for part 3. Part 3 would count the unique bigrams and output the count which is a single number. 
+
+For part 4 the input is also the same (path of directory) and the output is a tuple containing the document name, term, count, doc count, term count, and finally the TF-IDF of the given term.
+
+2. I would have liked to implement the other two parts I missed as they seemed like a great way to learn about Hadoop. I found the parts that I implemented quite difficult because of all the bugs and testing. Given the experience now I would easily implement anything that doesn't use Hadoop; since I couldn't get it running in the time, it would take longer to implement something in Hadoop as I still haven't gotten to use it. Part 1 was very straightforward but part 4 had some tough problems to solve when working through it. One, in particular, was counting the docs each term was in without losing information for which I ended up implementing a dictionary. 
