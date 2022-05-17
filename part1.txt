@@ -1,0 +1,62 @@
+Basic Indexing
+1. Explain in one sentence why we might break an index into shards.
+
+We might break an index into shards so that the indexing does not fail as it allows you to delegate operations and prevent failures due to indices hitting their limit.
+
+2. Explain in one sentence why we might replicate an index.
+
+You may replicate an index because they allow you to have a backup system in case a node crashes and also help you increase performance if the right amount of shards is created.
+
+3 Explain in one sentence why your cluster health is yellow.
+
+The cluster health is yellow because some of the replicas are not yet allocated as Elasticsearch creates one replica that is not allocated immediately.
+
+Indexing Reddit
+1. Ensure that your Elasticsearch instance has no indices in it. Provide the command you used to verify this.
+
+curl -X GET "localhost:9200/_cat/indices/twi*?v&s=index&pretty"
+
+2. Download the test.json file from the OWL assignment page. Run the following command, ensuring that you do this from the same folder that has the test.json file in it. What is the name of the index created by the command? 
+
+The name of the index is comments
+
+3. How large is the index? (pri.store.size)
+
+The index is 32.6 MB.
+
+Search(15)
+1. Do the three queries below return different sets of documents?
+How can you tell?
+
+Yes, you can tell by looking at the IDs of the documents, body, and the authors of the documents as they differ depending on the query.
+
+2. Give the highest score for each query.
+
+Query 1: 10.503806
+Query 2: 11.629242
+Query 3: 18.84402
+
+3. What can you deduce about the default stemming procedure used by Elasticsearch?
+
+I can deduce that the stemming process does not reduce the words to their word stem as it seems like the matches for cat and cats are exact and when cat is queried is does not seem to shorten cats to cat or use cat from other words, rather it produces exact results using the word cat or cats.
+
+4. Give a query that could be used to check whether or not Elasticsearch removes a common English stopword.
+
+curl -XGET 'localhost:9200/_search?pretty' -H 'Content-Type: application/json'
+-d'{ "query": { "match" : { "body" : { "query" : “the”} } } } '
+
+Analyzers(15)
+1. Delete the all indices in your Elasticsearch instance before beginning this section. Submit the code you use to do so.
+
+curl -X DELETE 'localhost:9200/_all'
+
+
+2. To change how Elasticsearch indexes documents, we provide settings for an index before documents are added to it. (This is why we had to delete all indices before running these next commands.) Run the following two (quite large) commands to change the default stemming behaviour. The first defines a new analyzer, my_analyzer, which uses a stemmer. It creates a comments index and adds this analyzer to it. The second informs Elasticsearch that it should use my_analyzer when analyzing the body field of documents going into the comments index.
+
+1. Re-run the three queries from the previous section. In a few sentences, describe how the results have changed.
+
+I can tell from the new results that the queries are now returning the same kind of bodies of documents and that the stemming is working differently now. They all are returning the exact same thing rather than getting different results by looking for exact matches there is stemming occurring now. 
+
+2. Has the size of the index become larger or smaller compared with the previous runs? Why do you think this might be?
+
+The size of the index is smaller than previous runs this might be because there may be less variation due to stemming leading to smaller indices.

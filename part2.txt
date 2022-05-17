@@ -1,0 +1,176 @@
+The Lucene Demo(10)
+
+1. Submit the following queries to the Lucene 8.7.0 demo and paste the results. Note that we have included a testcases.txt file that you can pipe in to simplify testing, e.g. java MySearchFiles < testcases.txt
+	a	his fiery sword
+	b	ALAS O LOVE
+	c	and
+	d	reckon
+	e	love
+	f	fair
+
+java org.apache.lucene.demo.SearchFiles < testcases.txt
+Enter query: 
+Searching for: his fiery sword
+5 total matching documents
+1. documents/RJ3.txt
+2. documents/RJ5.txt
+3. documents/RJ4.txt
+4. documents/RJ9.txt
+5. documents/RJ6.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: alas o love
+5 total matching documents
+1. documents/RJ6.txt
+2. documents/RJ8.txt
+3. documents/RJ7.txt
+4. documents/RJ1.txt
+5. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: and
+8 total matching documents
+1. documents/RJ3.txt
+2. documents/RJ10.txt
+3. documents/RJ5.txt
+4. documents/RJ2.txt
+5. documents/RJ4.txt
+6. documents/RJ8.txt
+7. documents/RJ7.txt
+8. documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: reckon
+0 total matching documents
+Enter query: 
+Searching for: q
+0 total matching documents
+Enter query: 
+Searching for: love
+4 total matching documents
+1. documents/RJ6.txt
+2. documents/RJ7.txt
+3. documents/RJ1.txt
+4. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: fair
+3 total matching documents
+1. documents/RJ9.txt
+2. documents/RJ10.txt
+3. documents/RJ1.txt
+
+2. Does the Lucene 8.7.0 demo use stopwords? Explain in one or two sentences how this can be deduced from the results of the queries above.
+
+No, it does not use stopwords this can be deduced because there are matches for the word when queried. “And” is a very common stop word as it is a conjunction.
+
+3. Does the Lucene 8.7.0 demo do stemming? If so, what stemmer does it use? Explain in one or two sentences how this can be deduced from the results of the queries above.
+
+No, it does not do stemming uses as by looking at the results for different queries I noticed that all documents with one exact version of one of the words in it were displayed. There were no shortened forms returned all the results had one of the exact words in the query in it.
+
+4.   What is the default similarity metric used by the Lucene 8.7.0 demo to retrieve documents? Can this be deduced from the results of the above queries? If so, explain how.
+		
+The similarity metric used is the presence of one or more of the words in the query. This can be deduced by looking at all the documents returned and seeing what words are present and looking at the other documents as well to see what they are lacking if a word has a prefix or suffix it is not returned.
+
+
+	9	java MySearchFiles < testcases.txt
+	10	Enter query: 
+	11	Searching for: fiery sword
+	12	1 total matching documents
+	13	1. documents/RJ3.txt
+	14	Press (q)uit or enter number to jump to a page.
+	15	Enter query: 
+	16	Searching for: alas love
+	17	4 total matching documents
+	18	1. documents/RJ6.txt
+	19	2. documents/RJ7.txt
+	20	3. documents/RJ1.txt
+	21	4. documents/RJ10.txt
+	22	Press (q)uit or enter number to jump to a page.
+	23	Enter query: 
+	24	Searching for: and
+	25	8 total matching documents
+	26	1. documents/RJ3.txt
+	27	2. documents/RJ10.txt
+	28	3. documents/RJ5.txt
+	29	4. documents/RJ2.txt
+	30	5. documents/RJ4.txt
+	31	6. documents/RJ8.txt
+	32	7. documents/RJ7.txt
+	33	8. documents/RJ1.txt
+	34	Press (q)uit or enter number to jump to a page.
+	35	Enter query: 
+	36	Searching for: reckon
+	37	0 total matching documents
+	38	Enter query: 
+	39	Searching for: q
+	40	0 total matching documents
+	41	Enter query: 
+	42	Searching for: love
+	43	4 total matching documents
+	44	1. documents/RJ6.txt
+	45	2. documents/RJ7.txt
+	46	3. documents/RJ1.txt
+	47	4. documents/RJ10.txt
+	48	Press (q)uit or enter number to jump to a page.
+	49	Enter query: 
+	50	Searching for: fair
+	51	3 total matching documents
+	52	1. documents/RJ9.txt
+	53	2. documents/RJ10.txt
+	54	3. documents/RJ1.txt
+(Not sure why there are numbers here but I ran out of time to get rid of them)
+
+Stemming(15)
+
+Enter query: 
+Searching for: fieri sword
+1 total matching documents
+1. documents/RJ3.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: ala love
+5 total matching documents
+1. documents/RJ6.txt
+2. documents/RJ7.txt
+3. documents/RJ8.txt
+4. documents/RJ1.txt
+5. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: and
+8 total matching documents
+1. documents/RJ3.txt
+2. documents/RJ10.txt
+3. documents/RJ5.txt
+4. documents/RJ2.txt
+5. documents/RJ4.txt
+6. documents/RJ8.txt
+7. documents/RJ7.txt
+8. documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: reckon
+1 total matching documents
+1. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: love
+5 total matching documents
+1. documents/RJ6.txt
+2. documents/RJ7.txt
+3. documents/RJ8.txt
+4. documents/RJ1.txt
+5. documents/RJ10.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+Searching for: fair
+3 total matching documents
+1. documents/RJ9.txt
+2. documents/RJ10.txt
+3. documents/RJ1.txt
+Press (q)uit or enter number to jump to a page.
+Enter query: 
+
+Similarity(15)
+Ran out of time
